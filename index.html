@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            background-image: url(it.jpg);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        table {
+            border: 10px solid cyan;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: blueviolet;
+            border-style: groove;
+            opacity: 1.0;
+            border-collapse: collapse;
+        }
+
+        input[type="button"] {
+            width: 100%;
+            padding: 20px 40px;
+            background-color: cadetblue;
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            border: cyan;
+            border-radius: 10px;
+            border-style: groove;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="button"]:hover {
+            background-color: #5fa8d3;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 20px 10px;
+            font-size: 30px;
+            font-weight: bold;
+            border: 1px solid black;
+            border-radius: 5px;
+            text-align: right;
+            box-sizing: border-box;
+        }
+
+        .taas {
+            width: 100%;
+            background-color: burlywood;
+            box-sizing: border-box;
+        }
+
+        tr:hover td {
+            background-color: darkgray;
+            border-radius: 10px;
+            opacity: 1.0;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td  colspan="4">
+                <input class="taas" type="text" id="result" disabled>
+            </td>
+        </tr>
+        <tr>
+            
+            <td colspan="2"><input type="button" value="C" onclick="clearResult()"></td>
+            <td colspan="2"><input type="button" value="Del" onclick="del()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="appendValue(1)"></td>
+            <td><input type="button" value="2" onclick="appendValue(2)"></td>
+            <td><input type="button" value="3" onclick="appendValue(3)"></td>
+            <td><input type="button" value="/" onclick="divide()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="appendValue(4)"></td>
+            <td><input type="button" value="5" onclick="appendValue(5)"></td>
+            <td><input type="button" value="6" onclick="appendValue(6)"></td>
+            <td><input type="button" value="*" onclick="multiply()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="appendValue(7)"></td>
+            <td><input type="button" value="8" onclick="appendValue(8)"></td>
+            <td><input type="button" value="9" onclick="appendValue(9)"></td>
+            <td><input type="button" value="-" onclick="minus()" ></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="." onclick="appendValue('.')"></td>
+            <td><input type="button" value="0" onclick="appendValue(0)"></td>
+            <td><input type="button" value="+" onclick="add()"></td>
+            <td><input type="button" value="=" onclick="calculateResult()"></td>
+          
+        </tr>
+    </table>
+
+    <script>
+        let currentInput = "";
+        let display = "";
+        let currentOperator = "";
+
+
+            function clearResult() {
+                currentInput = '';
+                currentOperator= '';
+                display= '';
+                document.getElementById('result').value = '';
+            }
+
+            function del() {
+                currentInput = currentInput.slice(0, -1);
+                display = display.slice(0, -1);
+                document.getElementById('result').value = display;
+            }
+
+            function appendValue(number) {
+                currentInput += number;
+                display += number;
+                document.getElementById('result').value = display;
+            }
+
+            function add() {
+                currentOperator = "+";
+                currentInput += currentOperator;
+                display += "+";
+                document.getElementById('result').value = display;
+            }
+
+            function minus() {
+                currentOperator = "-";
+                currentInput += currentOperator;
+                display += "−";
+                document.getElementById('result').value = display;
+            }
+
+
+            function multiply() {
+                currentOperator = "*" ;
+                currentInput += currentOperator;
+                display += "×";
+                document.getElementById('result').value = display;
+            }
+
+            function divide() {
+                currentOperator = "/";
+                currentInput += currentOperator;
+                display += "÷";
+                document.getElementById('result').value = display;
+            }
+
+            function calculateResult() {
+                const result = eval(currentInput);
+                console.log(result);
+                document.getElementById('result').value = result;
+                currentInput.toString();
+                currentOperator = '';
+            }
+
+
+
+        
+
+
+
+    </script>
+</body>
+</html>
